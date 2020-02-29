@@ -66,22 +66,27 @@
 
 <script>
     $(function() {
+        // attach submit listener
         $('#mc-embedded-subscribe-form').on('submit', function(){
             console.log('submitted');
             console.log(this);
+            // find html form element
             var emailElement = $(this).find('.required_email');
             console.log(emailElement);
             var emailValue = emailElement.val();
             console.log(emailValue);
+            // grab the post url from the form element
             var postUrl = $(this).attr('action');
             console.log(postUrl);
+            // create the payload for the post obj
             var postPayload = {
                 EMAIL:emailValue,
                 b_24822260f22b859e4b2c8a816_a98e9d9f92: '',
                 subscribe: 'Submit'
             };
-
+            // send the post request via ajax
             $.post(postUrl, postPayload, function(response){
+                //when the server returns the response, console log it
                 console.log(response);
             });
 
